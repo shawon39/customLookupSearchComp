@@ -1,0 +1,50 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+            </lightning-spinner>
+        </template>
+    </div>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button onclick={navigateToDetail}
+                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Add Existing Contact</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+                style="min-height: 250px; overflow:initial;">
+                <c-multi-select-search-records object-label="Contact" object-plural-name="Contacts" mapped-contact-list={mappedContactList}
+                    onchilddataevent={handleChildData}></c-multi-select-search-records>
+            </div>
+            <div class="slds-modal__footer slds-text-align_center">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel"
+                    onclick={navigateToDetail}>Cancel</button>
+                <button class="slds-button slds-button_brand" disabled={isDisabled} onclick={saveContact}>Save</button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    <template if:true={visible}>
+        <div class="slds-notify_container slds-is-relative">
+            <div class="slds-notify slds-notify_toast slds-theme_success" role="status">
+                <span class="slds-assistive-text">success</span>
+                <span
+                    class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top">
+                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#success"></use>
+                    </svg>
+                </span>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small ">Contacts have been added to Opportunity!</h2>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,16 @@
+<apex:page standardController="Contact" recordSetVar="contacts">
+    <apex:includeLightning />
+    <div id="compContainer" />
+    <script>
+        $Lightning.use('c:addExistingContactApp', function() {
+            $Lightning.createComponent(
+                'c:addExistingContact',
+                {
+                    recordId: "{!$CurrentPage.parameters.id}"
+                },
+                'compContainer',
+                function(cmp) {}
+            );
+        });
+    </script>
+</apex:page>

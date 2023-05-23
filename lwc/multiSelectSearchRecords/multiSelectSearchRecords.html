@@ -1,0 +1,82 @@
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="combobox-id-19" id="combobox-label-id-132">{objectPluralName}</label>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container slds-has-selection">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" id="ddId">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <input type="text" class="slds-input slds-combobox__input" id="combobox-id-19"
+                            aria-autocomplete="list" aria-controls="listbox-id-13" aria-expanded="false"
+                            aria-haspopup="listbox" auto-complete="off" role="combobox" placeholder="Search..."
+                            onfocus={handleFocus} onblur={handleBlur} oninput={handleOnChange} />
+                        <span
+                            class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                aria-hidden="true">
+                                <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#search"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div id="listbox-id-13" onmouseenter={handleMouseEnter} onmouseleave={handleMouseleave}
+                        class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox"
+                        aria-label="Search Records" tabindex="0" aria-busy="false">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <!-- Loop Start -->
+                            <template for:each={recordList} for:item="record">
+                                <li key={record.id} role="presentation" class="slds-listbox__item slds-is-selected"
+                                    data-id={record.id} data-name={record.name} onclick={handleLiClick} data-selected="false">
+                                    <div id="option756"
+                                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-media_center slds-is-selected"
+                                        role="option">
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                            <span class="slds-icon_container slds-icon-standard-contact">
+                                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                                    <use
+                                                        xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#contact">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <span
+                                                class="slds-listbox__option-text_entity slds-listbox__option-text_entity">{record.name}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                            <!-- Loop End -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <ul class="slds-listbox slds-listbox_horizontal" role="listbox" aria-label="Selected Options:"
+                    aria-orientation="horizontal">
+                    <!-- Loop Start -->
+                    <template for:each={selectedItems} for:item="record">
+                        <li key={record.id} class="slds-listbox-item slds-m-top_xx-small slds-m-right_xxx-small"
+                            role="presentation">
+                            <span class="slds-pill" role="option" tabindex="0" aria-selected="true">
+                                <span class="slds-icon_container slds-icon-standard-contact slds-pill__icon_container"
+                                    title={objectLabel}>
+                                    <svg class="slds-icon" aria-hidden="true">
+                                        <use xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#contact"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">{objectLabel</span>
+                                </span>
+                                <span class="slds-pill__label" title={record.name}>{record.name}</span>
+                                <span onclick={handleDeselect} data-id={record.id}
+                                    class="slds-icon_container slds-pill__remove" title="Remove">
+                                    <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                    </svg>
+                                </span>
+                            </span>
+                        </li>
+                    </template>
+                    <!-- Loop End -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
